@@ -1,0 +1,6 @@
+# IDE from JetBrains
+.idea/
+*.iml
+
+# System specific extensions
+.DS_Store
