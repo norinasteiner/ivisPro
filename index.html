@@ -1,21 +1,19 @@
 <!doctype html>
 <html>
 <head>
+    <script src='lib/d3.js'></script>
+    <script src='lib/lodash.js'></script>
+    <!-- <script src='src/analysis.js'></script> -->
 </head>
 <body onload="loadData()">
 
 Hallo ! :)
-<div id="content"></div>
 
-<script src='lib/d3.js'></script>
-<script src='lib/lodash.js'></script>
-<!-- <script src='src/analysis.js'></script> -->
-
-<script>
+<script type="text/javascript">
     function loadData() {
-        d3.csv("/data/Climbers.csv", function(data) {
-            document.getElementById("content").innerHTML = data[0];
-            document.getElementById("content").innerHTML = "Bye";
+        d3.select("body").append("p").text("New paragraph!");
+        d3.csv("data/Climbers.csv").then(function(data) {
+            console.log(data);
         });
     }
 </script>
