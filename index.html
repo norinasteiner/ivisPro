@@ -8,6 +8,14 @@ Hallo ! :)
 
 <script src='lib/d3.js'></script>
 <script src='lib/lodash.js'></script>
-<script src='src/analysis.js'></script>
+<!-- <script src='src/analysis.js'></script> -->
+
+<script>
+    d3.csv("/data/CLimbers.csv", function(data) {
+    console.log(data[0]);
+});
+</script>
+
+
 </body>
 </html>
