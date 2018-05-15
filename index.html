@@ -11,8 +11,9 @@
 Hallo ! :)
 
 <div id="buttonlist"></div>
-<div id="fatal"></div>
-<div id="climbers"></div>
+<div id="fatal"><h2>Fatalities</h2></div>
+<br />
+<div id="climbers"><h2>Success</h2></div>
 
 <script type="text/javascript">
     var yearSet = new Set();
@@ -27,12 +28,13 @@ Hallo ! :)
         d3.csv("data/Fatalities.csv").then(function(fatalData) {
             console.log(fatalData[0]);
             // addYears(fatalData);
-            showData(fatalData);
+            // showData(fatalData);
         });
 
         d3.csv("data/Fatalities_Climbers_union.csv").then(function(unionData) {
             console.log(unionData[0]);
             addYears(unionData);
+            showData(unionData);
         });
 
         console.log(yearSet);
@@ -46,6 +48,7 @@ Hallo ! :)
         yearSet.forEach(addButton);
     }
 
+    // Show buttons for each year
     function addButton(value1, value2, set) {
         var node = document.createElement("button");
         var textnode = document.createTextNode(value2);
@@ -53,9 +56,14 @@ Hallo ! :)
         document.getElementById("buttonlist").appendChild(node).appendChild(textnode);
     }
 
+    // Show each
     function showData(data) {
         for (var i = 0; i < data.length; i++) {
-            document.getElementById("fatal").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
+            if (data[i].Reason !== "") {
+                document.getElementById("fatal").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
+            } else {
+                document.getElementById("climbers").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
+            }
         }
     }
 

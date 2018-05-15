@@ -1,10 +1,14 @@
-#fatal {
-    background-color: indianred;
+#fatal,
+#climbers
+{
     width: 80%;
     margin: 0 auto;
+    clear: both;
 }
 
-#fatal > div {
+#fatal > div,
+#climbers > div
+{
     width: 150px;
     height: 100px;
     float: left;
