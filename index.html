@@ -3,19 +3,62 @@
 <head>
     <script src='lib/d3.js'></script>
     <script src='lib/lodash.js'></script>
+    <link rel="stylesheet" href="style.css">
     <!-- <script src='src/analysis.js'></script> -->
 </head>
 <body onload="loadData()">
 
 Hallo ! :)
 
+<div id="buttonlist"></div>
+<div id="fatal"></div>
+<div id="climbers"></div>
+
 <script type="text/javascript">
+    var yearSet = new Set();
+
+    // Loading data
     function loadData() {
-        d3.select("body").append("p").text("New paragraph!");
-        d3.csv("data/Climbers.csv").then(function(data) {
-            console.log(data);
+        d3.csv("data/Climbers.csv").then(function(climberData) {
+            console.log(climberData[0]);
+            // addYears(climberData);
         });
+
+        d3.csv("data/Fatalities.csv").then(function(fatalData) {
+            console.log(fatalData[0]);
+            // addYears(fatalData);
+            showData(fatalData);
+        });
+
+        d3.csv("data/Fatalities_Climbers_union.csv").then(function(unionData) {
+            console.log(unionData[0]);
+            addYears(unionData);
+        });
+
+        console.log(yearSet);
     }
+
+    // Create set with all years
+    function addYears(data) {
+        for (var i = 0; i < data.length; i++) {
+            yearSet.add(data[i].Year);
+        }
+        yearSet.forEach(addButton);
+    }
+
+    function addButton(value1, value2, set) {
+        var node = document.createElement("button");
+        var textnode = document.createTextNode(value2);
+        node.className = "tablinks";
+        document.getElementById("buttonlist").appendChild(node).appendChild(textnode);
+    }
+
+    function showData(data) {
+        for (var i = 0; i < data.length; i++) {
+            document.getElementById("fatal").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
+        }
+    }
+
 </script>
 
 

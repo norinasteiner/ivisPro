@@ -1,1 +1,12 @@
+#fatal {
+    background-color: indianred;
+    width: 80%;
+    margin: 0 auto;
+}
 
+#fatal > div {
+    width: 150px;
+    height: 100px;
+    float: left;
+    margin: 20px;
+}
