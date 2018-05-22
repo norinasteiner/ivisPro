@@ -10,33 +10,32 @@
 
 Hallo ! :)
 
-<div id="buttonlist"></div>
-<div id="fatal"><h2>Fatalities</h2></div>
+<div id="buttonlist">
+    <button type="button">Show all</button>
+</div>
+<div id="fatal">
+    <h2>Fatalities</h2>
+</div>
 <br />
-<div id="climbers"><h2>Success</h2></div>
+<div id="climbers">
+    <h2>Success</h2>
+</div>
 
 <script type="text/javascript">
     var yearSet = new Set();
+    var dataArray = new Array();
 
     // Loading data
     function loadData() {
-        d3.csv("data/Climbers.csv").then(function(climberData) {
-            console.log(climberData[0]);
-            // addYears(climberData);
-        });
-
-        d3.csv("data/Fatalities.csv").then(function(fatalData) {
-            console.log(fatalData[0]);
-            // addYears(fatalData);
-            // showData(fatalData);
-        });
-
         d3.csv("data/Fatalities_Climbers_union.csv").then(function(unionData) {
             console.log(unionData[0]);
             addYears(unionData);
-            showData(unionData);
-        });
 
+            for (var i = 0; i < unionData.length; i++) {
+                dataArray[i] = unionData[i];
+            }
+            showData(dataArray);
+        });
         console.log(yearSet);
     }
 
@@ -48,16 +47,93 @@ Hallo ! :)
         yearSet.forEach(addButton);
     }
 
-    // Show buttons for each year
+    // Create filter buttons for each year
     function addButton(value1, value2, set) {
-        var node = document.createElement("button");
+        // Create new button with id and value
+        var newbutton = document.createElement("button");
         var textnode = document.createTextNode(value2);
-        node.className = "tablinks";
-        document.getElementById("buttonlist").appendChild(node).appendChild(textnode);
+        newbutton.id = value2;
+
+        // Add new button to the HTML
+        document.getElementById("buttonlist").appendChild(newbutton).appendChild(textnode);
+
+        // Add function to the new button
+        document.getElementById(value2).addEventListener("click", function() {
+            filterYear(value2);
+        }, false);
     }
 
-    // Show each
-    function showData(data) {
+    function filterYear(year) {
+        console.log(year);
+
+        var selFatal = d3.select("#fatal")
+            .selectAll("div")
+            .data.filter(function(d) {
+                if (d.Year === year) {
+                    return d;
+                }
+            });
+        selFatal.enter()
+            .append("div")
+            .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
+        // showData(dataArray, year)
+    }
+
+    // Show each fatality / successful climber according to applied filters
+    function showData(data, year, gender, sherpa, nation, reason) {
+
+        function filterWith(givenData, attribute, value) {
+            givenData.filter(function(d) {
+                if (attribute === value) {
+                    console.log(attribute);
+                    return d;
+                }
+            });
+        }
+
+        var selFatal = d3.select("#fatal")
+            .selectAll("div")
+            .data(data.filter(function(d) {
+                if (d.Reason !== "") {
+
+                    if (year !== "" /*&& d.Year === year*/) {
+                        // filterWith(actualData, d.Year, year);
+                    }
+
+                    if (gender !== "" && d.Gender === gender) {
+
+                    }
+
+                    if (sherpa !== "" && d.Sherpa === sherpa) {
+
+                    }
+
+                    if (nation !== "" && d.Nation === nation) {
+
+                    }
+
+                    if (reason !== "" && d.Reason === reason) {
+
+                    }
+                    return d;
+                }
+            }));
+        selFatal.enter()
+            .append("div")
+            .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
+
+        var selClimbers = d3.select("#climbers")
+            .selectAll("div")
+            .data(data.filter(function(d) {
+                if (d.Reason === "") {
+                    return d;
+                }
+            }));
+        selClimbers.enter()
+            .append("div")
+            .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
+
+        /*
         for (var i = 0; i < data.length; i++) {
             if (data[i].Reason !== "") {
                 document.getElementById("fatal").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
@@ -65,10 +141,9 @@ Hallo ! :)
                 document.getElementById("climbers").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
             }
         }
+        */
     }
-
 </script>
-
 
 </body>
 </html>
