@@ -14,3 +14,27 @@
     float: left;
     margin: 20px;
 }
+
+header, footer {
+    padding: 2em;
+    color: white;
+    background-color: #62A6C4;
+    clear: left;
+    text-align: center;
+    font-family: "Aller Light";
+    font-size: 150%;
+}
+
+img {
+    margin: 1em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
