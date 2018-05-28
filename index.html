@@ -89,7 +89,7 @@
 
 
 <div id="buttonlist">
-    <button type="button">Show all</button>
+    <button type="button" onclick="deleteFilters">Show all</button>
 </div>
 <div id="fatal">
     <h2>Fatalities</h2>
@@ -102,6 +102,13 @@
 <script type="text/javascript">
     var yearSet = new Set();
     var dataArray = new Array();
+    var filterElement = {
+        year: "",
+        gender: "",
+        sherpa: "",
+        nation: "",
+        reason: ""
+    };
 
     // Loading data
     function loadData() {
@@ -112,7 +119,7 @@
             for (var i = 0; i < unionData.length; i++) {
                 dataArray[i] = unionData[i];
             }
-            showData(dataArray);
+            showData(dataArray, filterElement);
         });
         console.log(yearSet);
     }
@@ -141,85 +148,119 @@
         }, false);
     }
 
+    // Filter function for each year
     function filterYear(year) {
         console.log(year);
+        filterElement.year = year;
+        showData(dataArray, filterElement);
+    }
 
-        var selFatal = d3.select("#fatal")
-            .selectAll("div")
-            .data.filter(function(d) {
-                if (d.Year === year) {
-                    return d;
-                }
-            });
-        selFatal.enter()
-            .append("div")
-            .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
-        // showData(dataArray, year)
+    // Delete all existing filters
+    function deleteFilters() {
+        filterElement.year = "";
+        filterElement.gender = "";
+        filterElement.sherpa = "";
+        filterElement.nation = "";
+        filterElement.reason = "";
+        showData(dataArray, filterElement);
     }
 
     // Show each fatality / successful climber according to applied filters
-    function showData(data, year, gender, sherpa, nation, reason) {
+    function showData(data, givenFilter) {
 
-        function filterWith(givenData, attribute, value) {
-            givenData.filter(function(d) {
-                if (attribute === value) {
-                    console.log(attribute);
-                    return d;
-                }
-            });
+        // Function to filter the data according to the given filter
+        function filterData(d) {
+            var toReturn = true;
+            if( (givenFilter.year !== "" && d.Year !== givenFilter.year) ||
+                (givenFilter.gender !== "" && d.Gender !== givenFilter.gender) ||
+                (givenFilter.sherpa !== "" && d.Sherpa !== givenFilter.sherpa) ||
+                (givenFilter.nation !== "" && d.Nation !== givenFilter.nation) ||
+                (givenFilter.reason !== "" && d.Reason !== givenFilter.reason)
+            ) {
+                toReturn = false;
+            }
+            return toReturn;
         }
 
+        // Fatalities: Add new needed divs
         var selFatal = d3.select("#fatal")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason !== "") {
-
-                    if (year !== "" /*&& d.Year === year*/) {
-                        // filterWith(actualData, d.Year, year);
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
                     }
-
-                    if (gender !== "" && d.Gender === gender) {
-
-                    }
-
-                    if (sherpa !== "" && d.Sherpa === sherpa) {
-
-                    }
-
-                    if (nation !== "" && d.Nation === nation) {
-
-                    }
-
-                    if (reason !== "" && d.Reason === reason) {
-
-                    }
-                    return d;
                 }
             }));
         selFatal.enter()
             .append("div")
+
+        // Fatalities: Set right text
+        d3.select("#fatal")
+            .selectAll("div")
+            .data(data.filter(function(d) {
+                if (d.Reason !== "") {
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
+                    }
+                }
+            }))
             .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
 
+        // Fatalities: Remove unneeded divs
+        d3.select("#fatal")
+            .selectAll("div")
+            .data(data.filter(function(d) {
+                if (d.Reason !== "") {
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
+                    }
+                }
+            }))
+            .exit().remove();
+
+        // Climbers: Add new needed divs
         var selClimbers = d3.select("#climbers")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason === "") {
-                    return d;
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
+                    }
                 }
             }));
         selClimbers.enter()
             .append("div")
+
+        // Climbers: Set right text
+        d3.select("#climbers")
+            .selectAll("div")
+            .data(data.filter(function(d) {
+                if (d.Reason === "") {
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
+                    }
+                }
+            }))
             .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
 
-        /*
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].Reason !== "") {
-                document.getElementById("fatal").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
-            } else {
-                document.getElementById("climbers").appendChild(document.createElement("DIV")).innerHTML = data[i].Lastname + " " + data[i].Year + " " + data[i].Reason;
-            }
-        }
-        */
+        // Climbers: Remove unneeded divs
+        d3.select("#climbers")
+            .selectAll("div")
+            .data(data.filter(function(d) {
+                if (d.Reason === "") {
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
+                    }
+                }
+            }))
+            .exit().remove();
     }
 
 </script>
