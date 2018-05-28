@@ -6,14 +6,53 @@
     clear: both;
 }
 
-#fatal > div,
-#climbers > div
+#fatal > td > div,
+#climbers > td > div
 {
-    width: 150px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
     float: left;
-    margin: 20px;
 }
+
+/* Tooltip function from https://www.w3schools.com/css/css_tooltip.asp with own styling */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    font-size: smaller;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    opacity: 0.5;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 120%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+/* End of tooltip function */
 
 header, footer {
     padding: 2em;

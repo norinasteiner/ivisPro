@@ -55,14 +55,14 @@
         <tr>
             <th>Fatalities</th>
         </tr>
-        <tr>
-            <td>Hier kommen die Strichmännchen</td>
+        <tr id="fatal">
+            <td></td>
         </tr>
         <tr>
             <th>Summiters</th>
         </tr>
-        <tr>
-            <td>Hier kommen die Strichmännchen</td>
+        <tr id="climbers">
+            <td></td>
         </tr>
     </table>
 </div>
@@ -71,32 +71,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="buttonlist">
-    <button type="button" onclick="deleteFilters">Show all</button>
-</div>
-<div id="fatal">
-    <h2>Fatalities</h2>
-</div>
-<br />
-<div id="climbers">
-    <h2>Success</h2>
+    <button type="button" onclick="deleteFilters()">Show all</button>
 </div>
 
 <script type="text/javascript">
@@ -184,6 +160,7 @@
 
         // Fatalities: Add new needed divs
         var selFatal = d3.select("#fatal")
+            .select("td")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason !== "") {
@@ -194,10 +171,11 @@
                 }
             }));
         selFatal.enter()
-            .append("div")
+            .append("div");
 
         // Fatalities: Set right text
         d3.select("#fatal")
+            .select("td")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason !== "") {
@@ -207,10 +185,36 @@
                     }
                 }
             }))
-            .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
+            .attr("class", "tooltip")
+            .append("span")
+            .attr("class", "tooltiptext")
+            .text(function(d) { return d.Lastname + " " + d.Sherpa + " " + d.Nation + " " + d.Reason + " " + d.Year; });
 
-        // Fatalities: Remove unneeded divs
+        // Fatalities: Add right images
+        var stickWomen = d3.select("#fatal")
+            .select("td")
+            .selectAll("div")
+            .each(function(d) {
+                if (d.Gender === "f") {
+                    d3.select(this)
+                        .append("svg")
+                        .attr("width", 50)
+                        .attr("height", 50)
+                        .append("svg:image")
+                        .attr("xlink:href", "images/stickwoman.svg");
+                } else {
+                    d3.select(this)
+                        .append("svg")
+                        .attr("width", 50)
+                        .attr("height", 50)
+                        .append("svg:image")
+                        .attr("xlink:href", "images/stickman.svg");
+                }
+            });
+
+        // Fatalities: Remove unnecessary divs
         d3.select("#fatal")
+            .select("td")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason !== "") {
@@ -224,6 +228,7 @@
 
         // Climbers: Add new needed divs
         var selClimbers = d3.select("#climbers")
+            .select("td")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason === "") {
@@ -234,10 +239,11 @@
                 }
             }));
         selClimbers.enter()
-            .append("div")
+            .append("div");
 
         // Climbers: Set right text
         d3.select("#climbers")
+            .select("td")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason === "") {
@@ -247,10 +253,36 @@
                     }
                 }
             }))
-            .text(function(d) { return d.Lastname + " " + d.Year + " " + d.Reason; });
+            .attr("class", "tooltip")
+            .append("span")
+            .attr("class", "tooltiptext")
+            .text(function(d) { return d.Lastname + " " + d.Sherpa + " " + d.Nation + " " + d.Reason + " " + d.Year; });
 
-        // Climbers: Remove unneeded divs
+        // Climbers: Add right images
         d3.select("#climbers")
+            .select("td")
+            .selectAll("div")
+            .each(function(d) {
+                if (d.Gender === "f") {
+                    d3.select(this)
+                        .append("svg")
+                        .attr("width", 50)
+                        .attr("height", 50)
+                        .append("svg:image")
+                        .attr("xlink:href", "images/stickwoman.svg");
+                } else {
+                    d3.select(this)
+                        .append("svg")
+                        .attr("width", 50)
+                        .attr("height", 50)
+                        .append("svg:image")
+                        .attr("xlink:href", "images/stickman.svg");
+                }
+            });
+
+        // Climbers: Remove unnecessary divs
+        d3.select("#climbers")
+            .select("td")
             .selectAll("div")
             .data(data.filter(function(d) {
                 if (d.Reason === "") {
