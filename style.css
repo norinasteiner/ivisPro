@@ -54,6 +54,10 @@
 }
 /* End of tooltip function */
 
+
+/* Header, Footer */
+
+
 header, footer {
     padding: 2em;
     color: white;
@@ -64,6 +68,8 @@ header, footer {
     font-size: 150%;
 }
 
+/* Images */
+
 img {
     margin: 1em;
     display: block;
@@ -71,9 +77,72 @@ img {
     margin-right: auto;
 }
 
+/* Tables */
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
+/* Scrollmenu */
+
+div.scrollmenu {
+    background-color: #62A6C4;
+    overflow: auto;
+    white-space: nowrap;
+    margin-bottom: 30px;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: #8BC8E2;
+}
+
+/*Filters*/
+
+.filterDiv {
+    float: left;
+    background-color: #62A6C4;
+    color: #ffffff;
+    width: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin: 2px;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.container {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+/* Buttons */
+.btn, button {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.btn:hover, button:hover {
+    background-color: #ddd;
+}
+
+.btn.active, button.active {
+    background-color: #666;
+    color: white;
+}
 
