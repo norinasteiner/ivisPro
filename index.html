@@ -171,7 +171,16 @@
                 }
             }));
         selFatal.enter()
-            .append("div");
+            .append("div")
+            .attr("class", "tooltip")
+            .append("span")
+            .select(function(){
+                return this.parentNode;
+            })
+            .append("svg")
+            .attr("width", 50)
+            .attr("height", 50)
+            .append("svg:image");
 
         // Fatalities: Set right text
         d3.select("#fatal")
@@ -185,30 +194,29 @@
                     }
                 }
             }))
-            .attr("class", "tooltip")
-            .append("span")
+            .select("span")
             .attr("class", "tooltiptext")
             .text(function(d) { return d.Lastname + " " + d.Sherpa + " " + d.Nation + " " + d.Reason + " " + d.Year; });
 
         // Fatalities: Add right images
-        var stickWomen = d3.select("#fatal")
+        d3.select("#fatal")
             .select("td")
             .selectAll("div")
-            .each(function(d) {
+            .data(data.filter(function(d) {
+                if (d.Reason !== "") {
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
+                    }
+                }
+            }))
+            .select("svg")
+            .select("image")
+            .attr("xlink:href", function(d) {
                 if (d.Gender === "f") {
-                    d3.select(this)
-                        .append("svg")
-                        .attr("width", 50)
-                        .attr("height", 50)
-                        .append("svg:image")
-                        .attr("xlink:href", "images/stickwoman.svg");
+                    return "images/stickwoman.svg";
                 } else {
-                    d3.select(this)
-                        .append("svg")
-                        .attr("width", 50)
-                        .attr("height", 50)
-                        .append("svg:image")
-                        .attr("xlink:href", "images/stickman.svg");
+                    return "images/stickman.svg";
                 }
             });
 
@@ -226,6 +234,9 @@
             }))
             .exit().remove();
 
+
+
+
         // Climbers: Add new needed divs
         var selClimbers = d3.select("#climbers")
             .select("td")
@@ -239,7 +250,16 @@
                 }
             }));
         selClimbers.enter()
-            .append("div");
+            .append("div")
+            .attr("class", "tooltip")
+            .append("span")
+            .select(function(){
+                return this.parentNode;
+            })
+            .append("svg")
+            .attr("width", 50)
+            .attr("height", 50)
+            .append("svg:image");
 
         // Climbers: Set right text
         d3.select("#climbers")
@@ -253,8 +273,7 @@
                     }
                 }
             }))
-            .attr("class", "tooltip")
-            .append("span")
+            .select("span")
             .attr("class", "tooltiptext")
             .text(function(d) { return d.Lastname + " " + d.Sherpa + " " + d.Nation + " " + d.Reason + " " + d.Year; });
 
@@ -262,21 +281,21 @@
         d3.select("#climbers")
             .select("td")
             .selectAll("div")
-            .each(function(d) {
+            .data(data.filter(function(d) {
+                if (d.Reason === "") {
+                    var toReturn = filterData(d);
+                    if (toReturn) {
+                        return d;
+                    }
+                }
+            }))
+            .select("svg")
+            .select("image")
+            .attr("xlink:href", function(d) {
                 if (d.Gender === "f") {
-                    d3.select(this)
-                        .append("svg")
-                        .attr("width", 50)
-                        .attr("height", 50)
-                        .append("svg:image")
-                        .attr("xlink:href", "images/stickwoman.svg");
+                    return "images/stickwoman.svg";
                 } else {
-                    d3.select(this)
-                        .append("svg")
-                        .attr("width", 50)
-                        .attr("height", 50)
-                        .append("svg:image")
-                        .attr("xlink:href", "images/stickman.svg");
+                    return "images/stickman.svg";
                 }
             });
 
@@ -293,6 +312,7 @@
                 }
             }))
             .exit().remove();
+
     }
 
 </script>
