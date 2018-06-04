@@ -66,19 +66,29 @@ function filterYear(year) {
 function filterSherpa() {
     if (filterElement.sherpa === "") {
         filterElement.sherpa = "Sherpa";
+    } else {
+        filterElement.sherpa = "";
     }
     showData(dataArray, filterElement);
 }
 
 // Filter function for showing only people of one gender
 function filterGender(g) {
-    filterElement.gender = g;
+    if (filterElement.gender !== g) {
+        filterElement.gender = g;
+    } else {
+        filterElement.gender = "";
+    }
     showData(dataArray, filterElement);
 }
 
 // Filter function for showing only people from Switzerland
 function filterNation(n) {
-    filterElement.nation = n;
+    if (filterElement.nation !== n) {
+        filterElement.nation = n;
+    } else {
+        filterElement.nation = "";
+    }
     showData(dataArray, filterElement);
 }
 
@@ -293,16 +303,50 @@ function showData(data, givenFilter) {
 
 // Show which buttons are active
 function showActiveButtons() {
+
+    // First part for filter layer 2), where multiple buttons can be active
     var onlyfilters = document.getElementById("onlyfilters");
     var obtns = onlyfilters.getElementsByClassName("btn");
     for (var i = 0; i < obtns.length; i++) {
         obtns[i].addEventListener("click", function () {
-            var current = onlyfilters.getElementsByClassName("active");
-            current[0].className = "";
-            this.className += " active";
+            var nofilter = true;
+
+            if (filterElement.sherpa === "Sherpa") {
+                obtns[1].className += " active";
+                nofilter = false;
+            } else {
+                obtns[1].className = "btn";
+            }
+
+            if (filterElement.gender === "m") {
+                obtns[2].className += " active";
+                obtns[3].className = "btn";
+                nofilter = false;
+            } else if (filterElement.gender === "f") {
+                obtns[2].className = "btn";
+                obtns[3].className += " active";
+                nofilter = false;
+            } else {
+                obtns[2].className = "btn";
+                obtns[3].className = "btn";
+            }
+
+            if (filterElement.nation === "CH") {
+                obtns[4].className += " active";
+                nofilter = false;
+            } else {
+                obtns[4].className = "btn";
+            }
+
+            if (nofilter) {
+                obtns[0].className += " active";
+            } else {
+                obtns[0].className = "btn";
+            }
         }, false);
     }
 
+    // Second part for filter layer 3), where only one button can be active
     var fatalfilters = document.getElementById("fatalfilters");
     var fbtns = fatalfilters.getElementsByClassName("btn");
     for (var x = 0; x < fbtns.length; x++) {

@@ -28,6 +28,15 @@ img {
 }
 
 
+/* Arrow */
+
+#arrow {
+    float: right;
+    margin-right: 5%;
+    margin-top: -5%;
+}
+
+
 /* Scrollmenu */
 
 div#Scrollmenu {
@@ -158,6 +167,13 @@ table, th, td {
     bottom: 120%;
     left: 50%;
     margin-left: -60px;
+}
+
+h2 .tooltip .tooltiptext,
+h3 .tooltip .tooltiptext {
+    width: 140px;
+    font-size: small;
+    font-weight: normal;
 }
 
 .tooltip .tooltiptext::after {
