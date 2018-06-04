@@ -1,9 +1,122 @@
+/* Body */
+
 body{
     text-align: center;
     font-family: Quicksand;
 }
 
 
+/* Header, Footer */
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: #62A6C4;
+    clear: left;
+    text-align: center;
+    font-size: 150%;
+}
+
+
+/* Images */
+
+img {
+    margin: 1em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Scrollmenu */
+
+div#Scrollmenu {
+    background-color: #62A6C4;
+    overflow: auto;
+    white-space: nowrap;
+    width: 80%;
+    margin: 0 auto;
+}
+
+div#Scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div#Scrollmenu a:hover {
+    background-color: #8BC8E2;
+}
+
+div#Scrollmenu a.active{
+    background-color: #8BC8E2;
+
+}
+
+
+/* Breaklines */
+
+.breakline {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+}
+
+#bl1 {
+    width: 80%;
+}
+
+#bl2 {
+    width: 70%;
+}
+
+#bl3 {
+    width: 60%;
+}
+
+#bl4 {
+    width: 50%;
+}
+
+
+/* Buttons */
+
+.btn, button {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.btn:hover, button:hover {
+    background-color: #ddd;
+}
+
+.btn.active, button.active {
+    background-color: #666;
+    color: white;
+}
+
+
+/* Tables & content */
+
+table, th, td {
+    border: 1px solid #dedede;
+    border-collapse: collapse;
+    padding: 15px;
+}
+
+.e_table {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
 
 #fatal,
 #climbers
@@ -22,7 +135,9 @@ body{
     float: left;
 }
 
+
 /* Tooltip function from https://www.w3schools.com/css/css_tooltip.asp with own styling */
+
 .tooltip {
     position: relative;
     display: inline-block;
@@ -59,110 +174,3 @@ body{
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
-/* End of tooltip function */
-
-
-/* Header, Footer */
-
-
-header, footer {
-    padding: 2em;
-    color: white;
-    background-color: #62A6C4;
-    clear: left;
-    text-align: center;
-    font-size: 150%;
-}
-
-/* Images */
-
-img {
-    margin: 1em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Tables */
-
-table, th, td {
-    border: 1px solid #dedede;
-    border-collapse: collapse;
-    padding: 15px;
-}
-
-.e_table {
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-/* Scrollmenu */
-
-div#Scrollmenu {
-    background-color: #62A6C4;
-    overflow: auto;
-    white-space: nowrap;
-    width: 80%;
-    margin: 0 auto;
-}
-
-div#Scrollmenu a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-}
-
-div#Scrollmenu a:hover {
-    background-color: #8BC8E2;
-}
-
-div#Scrollmenu a.active{
-    background-color: #8BC8E2;
-
-}
-
-/*Filters*/
-
-.filterDiv {
-    float: left;
-    background-color: #62A6C4;
-    color: #ffffff;
-    width: 100px;
-    line-height: 100px;
-    text-align: center;
-    margin: 2px;
-    display: none;
-}
-
-.show {
-    display: block;
-}
-
-.container {
-    margin-top: 10px;
-    overflow: hidden;
-}
-
-/* Buttons */
-.btn, button {
-    border: none;
-    outline: none;
-    padding: 12px 16px;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    margin-top: 2px;
-}
-
-.btn:hover, button:hover {
-    background-color: #ddd;
-}
-
-.btn.active, button.active {
-    background-color: #666;
-    color: white;
-}
-
