@@ -1,8 +1,8 @@
 # ivisPro Description
 In unserer Visualisierung geht es um dem Mount Everest. 
 
-Mit unserer Lösung zeigen wir, in welchem Jahr wieviele Leute den Gipfel erfolgreich besteigen. Zudem zeigen wir, wie viele beim Versuch gestorben sind und die jeweilige Todesursachen.
-Ersichtlich ist:
+Mit unserer Lösung zeigen wir, in welchem Jahr wieviele Leute den Gipfel erfolgreich bestiegen haben. Zudem zeigen wir, wie viele beim Versuch gestorben sind und die jeweilige Todesursachen.
+Ersichtlich sind:
 - Allgemeine Informationen zum Berg
 - Timeline
 - Name des Bergsteigers
@@ -14,7 +14,7 @@ Filtern kann man nach:
 - Jahr
 - Geschlecht
 - Schweizer
-- Sherpa / kein Sherpa
+- Sherpa
 - Todesursache
 
 # DataSources
@@ -41,6 +41,7 @@ Die Grafiken und Strichmännchen wurden in der Sketchapp entworfen.
 
 # Installation
 Das Projekt kann unter dem Link https://norinasteiner.github.io/ivisPro/ aufgerufen werden.
+Je nach Internetverbindung kann es etwas dauern, bis alle Daten geladen sind.
 
 # Browser
 Unser Projekt wird ausschliesslich von Google Chrom unterstützt. 

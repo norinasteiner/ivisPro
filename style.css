@@ -28,15 +28,6 @@ img {
 }
 
 
-/* Arrow */
-
-#arrow {
-    float: right;
-    margin-right: 5%;
-    margin-top: -5%;
-}
-
-
 /* Scrollmenu */
 
 div#Scrollmenu {
@@ -189,4 +180,11 @@ h3 .tooltip .tooltiptext {
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+
+/* Info */
+
+.info {
+    margin-bottom: 7px;
 }
