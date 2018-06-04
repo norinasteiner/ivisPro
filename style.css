@@ -1,3 +1,10 @@
+body{
+    text-align: center;
+    font-family: Muli;
+}
+
+
+
 #fatal,
 #climbers
 {
@@ -64,7 +71,6 @@ header, footer {
     background-color: #62A6C4;
     clear: left;
     text-align: center;
-    font-family: "Aller Light";
     font-size: 150%;
 }
 
@@ -80,25 +86,28 @@ img {
 /* Tables */
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #dedede;
     border-collapse: collapse;
+    padding: 15px;
 }
 
 .e_table {
     width: 50%;
     margin: 0 auto;
+    margin-top: 30px;
 }
 
 /* Scrollmenu */
 
-div.scrollmenu {
+div#Scrollmenu {
     background-color: #62A6C4;
     overflow: auto;
     white-space: nowrap;
-    margin-bottom: 30px;
+    width: 80%;
+    margin: 0 auto;
 }
 
-div.scrollmenu a {
+div#Scrollmenu a {
     display: inline-block;
     color: white;
     text-align: center;
@@ -106,8 +115,13 @@ div.scrollmenu a {
     text-decoration: none;
 }
 
-div.scrollmenu a:hover {
+div#Scrollmenu a:hover {
     background-color: #8BC8E2;
+}
+
+div#Scrollmenu a.active{
+    background-color: #8BC8E2;
+
 }
 
 /*Filters*/
