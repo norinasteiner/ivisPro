@@ -17,6 +17,8 @@ Filtern kann man nach:
 - Sherpa
 - Todesursache
 
+Hinweis: Teilweise kommen Personen bei den Fatalities und den Summiters vor, dies liegt daran, dass diese Personen beim Weg nach unten verunfallt sind.
+
 # DataSources
 Die Hauptdatenquelle stammt von http://www.8000ers.com/. Dort fand man zwei seperate Files mit allen erfolgreichen Besteiger 
 und allen Verunfallten. 
@@ -34,6 +36,7 @@ Unsere Daten haben wir mit dem Tool «Trifcta Wrangler» bereinigt. Folgendes ha
 - Grund für Fatalities gruppiert
 - Die wichtigsten/meisten Gründe für Fatalities bestimmt, der Rest als «other» definiert
 - Leere Felder als null definiert
+- Die zwei seperaten Files zu einem vereint, sodass wir in einem einzigen File alle Sumitter uns Fatalities haben
 - usw.
 
 # Sketchs
@@ -44,7 +47,7 @@ Das Projekt kann unter dem Link https://norinasteiner.github.io/ivisPro/ aufgeru
 Je nach Internetverbindung kann es etwas dauern, bis alle Daten geladen sind.
 
 # Browser
-Unser Projekt wird ausschliesslich von Google Chrom unterstützt. 
+Um eine korrekte Darstellung der Visualisierung zu erreichen, muss das Projekt mit dem Browser «Google Chrome» geöffnet werden. 
 
 # Contributors
 Das ivis-Projekt wurde von Sandra Meier und Norina Steiner im Team erarbeitet.
